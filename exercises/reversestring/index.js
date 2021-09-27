@@ -8,10 +8,15 @@
 
 function reverse(str) {
   let s = '';
-  for (let i = 0; i < str.length; i++) {
-    s += str[str.length - 1 - i].toString();
+  for (char of str) {
+    s = char + s;
   }
   return s;
 }
+
+// Alternative
+// function reverse(str) {
+//   return str.split('').reverse().join('')
+// }
 
 module.exports = reverse;
