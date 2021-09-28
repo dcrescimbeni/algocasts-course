@@ -17,13 +17,18 @@ function maxChar(str) {
 
   let max = {
     char: hash[str[0]],
-    num,
+    num: 0,
   };
 
-  // LO DEJE ACA, NO TERMINADO
-
   for (let [key, value] of Object.entries(hash)) {
+    if (value > max.num) {
+      max.char = key;
+      max.num = value;
+    }
   }
+
+  debugger;
+  return max.char;
 }
 
 module.exports = maxChar;
