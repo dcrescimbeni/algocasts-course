@@ -26,7 +26,7 @@ function steps(n, r = 1, s = '') {
   // New line
   if (s.length === n) {
     console.log(s);
-    steps(n, r + 1, (s = ''));
+    return steps(n, r + 1, (s = ''));
   }
 
   // Process steps
