@@ -8,12 +8,30 @@
 // Example:
 //   fib(4) === 3
 
-function fib(n) {
-  if (n === 1 || n === 0) {
-    return n;
+// memoization solution
+function fib(n, h = {}) {
+  if (n === 0) {
+    return (h[0] = 0);
   }
 
-  return fib(n - 1) + fib(n - 2);
+  if (n === 1) {
+    return (h[1] = 1);
+  }
+
+  if (h[n] === undefined) {
+    h[n] = fib(n - 1, h) + fib(n - 2, h);
+  }
+
+  return h[n];
 }
 
 module.exports = fib;
+
+// Recursive solution
+// function fib(n) {
+//   if (n === 1 || n === 0) {
+//     return n;
+//   }
+
+//   return fib(n - 1) + fib(n - 2);
+// }
