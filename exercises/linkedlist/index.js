@@ -101,6 +101,27 @@ class LinkedList {
 
     return current;
   }
+
+  removeAt(index) {
+    if (this.size() - 1 < index) {
+      return null;
+    }
+
+    if (!this.head) {
+      return null;
+    }
+
+    let i = 0;
+    let current = this.head;
+
+    while (i < index) {
+      current = current.next;
+      i++;
+    }
+
+    current.next = null;
+    return current;
+  }
 }
 
 module.exports = { Node, LinkedList };
