@@ -39,12 +39,37 @@ class LinkedList {
 
   getLast() {
     let current = this.head;
-
     while (current.next) {
       current = current.next;
     }
-
     return current;
+  }
+
+  clear() {
+    this.head = null;
+  }
+
+  removeFirst() {
+    this.head = this.head.next;
+  }
+
+  removeLast() {
+    if (this.size() === 1) {
+      this.head = null;
+      return;
+    }
+
+    if (this.size() === 0) {
+      return;
+    }
+    let current = this.head;
+    let prev = this.head;
+    while (current.next) {
+      prev = current;
+      current = current.next;
+    }
+    prev.next = null;
+    return prev;
   }
 }
 
