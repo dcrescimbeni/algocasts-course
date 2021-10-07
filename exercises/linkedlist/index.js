@@ -71,6 +71,36 @@ class LinkedList {
     prev.next = null;
     return prev;
   }
+
+  insertLast(data) {
+    if (!this.head) {
+      this.head = new Node(data);
+      return;
+    }
+    let current = this.head;
+
+    while (current.next) {
+      current = current.next;
+    }
+
+    let newNode = new Node(data);
+    current.next = newNode;
+  }
+
+  getAt(index) {
+    if (this.size() < index) {
+      return null;
+    }
+    let i = 0;
+    let current = this.head;
+
+    while (i < index) {
+      current = current.next;
+      i++;
+    }
+
+    return current;
+  }
 }
 
 module.exports = { Node, LinkedList };
