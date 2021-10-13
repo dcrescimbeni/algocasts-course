@@ -129,6 +129,7 @@ class LinkedList {
     // Inserts at head
     if (this.size() === 0) {
       this.head = new Node(data);
+      return;
     }
 
     // Inserts at the beginning
@@ -136,10 +137,24 @@ class LinkedList {
       let prevHead = this.head;
       this.head = new Node(data);
       this.head.next = prevHead;
+      return;
     }
 
-    // LEFT AT THE MIDDLE
-    // NOT FINISHED
+    // Inserts at the end
+    if (this.size() - 1 <= index) {
+      let last = this.getLast();
+      last.next = new Node(data);
+      return;
+    }
+
+    // Inserts at the middle
+    let pastNode = this.getAt(index - 1);
+    let currentNode = new Node(data);
+    let nextNode = this.getAt(index);
+
+    pastNode.next = currentNode;
+    currentNode.next = nextNode;
+    return;
   }
 }
 
