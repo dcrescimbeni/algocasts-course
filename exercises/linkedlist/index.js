@@ -103,24 +103,26 @@ class LinkedList {
   }
 
   removeAt(index) {
-    if (this.size() - 1 < index) {
+    let toDelete = this.getAt(index);
+
+    if (!toDelete) {
       return null;
     }
 
-    if (!this.head) {
-      return null;
+    // Removes first entry (head)
+    if (index === 0) {
+      this.head = this.head.next;
     }
 
-    let i = 0;
-    let current = this.head;
-
-    while (i < index) {
-      current = current.next;
-      i++;
+    // Removes last entry (tail)
+    if (toDelete.next === null) {
+      let previous = this.getAt(index - 1);
+      previous.next = null;
     }
 
-    current.next = null;
-    return current;
+    // Removes node in the middle
+    let previous = this.getAt(index - 1);
+    previous.next = this.getAt(index + 1);
   }
 }
 
