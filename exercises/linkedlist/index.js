@@ -164,7 +164,7 @@ class LinkedList {
   forEach(fun) {
     let current = this.head;
     while (current) {
-      current.data = fun(current);
+      fun(current);
       current = current.next;
     }
   }
