@@ -24,13 +24,11 @@ function midpoint(list) {
     fast = fast.next;
     fast = fast.next;
 
-    next1 = fast.next;
-    next2 = next1.next;
+    fast.next ? (next1 = fast.next) : (next1 = null);
+    next1 ? (next2 = next1.next) : (next2 = null);
   }
 
-  return slow.data;
-
-  // Not finished, not working
+  return slow;
 }
 
 module.exports = midpoint;
