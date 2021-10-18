@@ -23,7 +23,6 @@ class Node {
 
   remove(data) {
     let removeIndex;
-    let testVar;
     this.children.forEach((item, index) => {
       if (item.data === data) {
         removeIndex = index;
@@ -63,13 +62,42 @@ class Tree {
       queue.shift();
     }
   }
+
+  traverseDF(fn) {
+    if (!this.root) {
+      return null;
+    }
+
+    let queue = [];
+    queue.push(this.root);
+
+    while (queue.length > 0) {
+      let current = queue[0];
+      queue.shift();
+
+      console.log(current);
+      console.log(current);
+      
+      if (current.children) {
+        queue.unshift(current.children);
+      }
+
+      fn(current);
+
+
+    }
+  }
 }
 
-// const t = new Tree();
-// t.root = new Node('a');
-// t.root.add('b');
-// t.root.add('c');
-// t.root.children[0].add('d');
-// debugger;
+const letters = [];
+const t = new Tree();
+t.root = new Node('a');
+t.root.add('b');
+t.root.add('d');
+t.root.children[0].add('c');
+
+t.traverseDF((node) => {
+  letters.push(node.data);
+});
 
 module.exports = { Tree, Node };
