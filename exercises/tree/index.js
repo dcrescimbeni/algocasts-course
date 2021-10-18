@@ -43,9 +43,33 @@ class Tree {
     this.root = null;
   }
 
-  traverseBF() {
-    let current = this.root;
+  traverseBF(fn) {
+    if (!this.root) {
+      return null;
+    }
+
+    let queue = [];
+    queue.push(this.root);
+
+    while (queue.length > 0) {
+      let current = queue[0];
+
+      current.children.forEach((item) => {
+        queue.push(item);
+      });
+
+      fn(current);
+
+      queue.shift();
+    }
   }
 }
+
+// const t = new Tree();
+// t.root = new Node('a');
+// t.root.add('b');
+// t.root.add('c');
+// t.root.children[0].add('d');
+// debugger;
 
 module.exports = { Tree, Node };
