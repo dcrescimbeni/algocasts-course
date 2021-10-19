@@ -68,23 +68,22 @@ class Tree {
       return null;
     }
 
-    let queue = [];
-    queue.push(this.root);
+    let stack = [];
 
-    while (queue.length > 0) {
-      let current = queue[0];
-      queue.shift();
+    stack.push(this.root);
 
-      console.log(current);
-      console.log(current);
-      
-      if (current.children) {
-        queue.unshift(current.children);
-      }
+    while (stack.length > 0) {
+      // Remove last element
+      // and set it as current to process
+      let current = stack.shift();
 
+      // apply function to current
       fn(current);
 
-
+      // Add children to stack
+      if (current.children) {
+        stack = [...current.children, ...stack];
+      }
     }
   }
 }
@@ -99,5 +98,7 @@ t.root.children[0].add('c');
 t.traverseDF((node) => {
   letters.push(node.data);
 });
+
+console.log(letters);
 
 module.exports = { Tree, Node };
