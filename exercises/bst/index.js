@@ -54,34 +54,16 @@ class Node {
     }
 
     // Left
-    if (this.data > toFind) {
-      // The node has no children
-      // So it doesn't exist
-      if (!this.left) {
-        return null;
-      }
-
-      if (this.left) {
-        return this.left.contains(toFind);
-      }
+    if (this.data > toFind && this.left) {
+      return this.left.contains(toFind);
     }
 
     // Right
-    if (this.data < toFind) {
-      // The node has no children
-      // So it doesn't exist
-      if (!this.right) {
-        return null;
-      }
-
-      if (this.right) {
-        return this.right.contains(toFind);
-      }
+    if (this.data < toFind && this.right) {
+      return this.right.contains(toFind);
     }
 
-    // console.log(search(toFind, this));
-
-    return search(toFind, this);
+    return null;
   }
 }
 
