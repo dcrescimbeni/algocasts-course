@@ -48,38 +48,34 @@ class Node {
   }
 
   contains(toFind) {
-    function search(toFind, current) {
-      // Base case, we find the value
-      if (current.data === toFind) {
-        return current;
+    // Base case, we find the value
+    if (this.data === toFind) {
+      return this;
+    }
+
+    // Left
+    if (this.data > toFind) {
+      // The node has no children
+      // So it doesn't exist
+      if (!this.left) {
+        return null;
       }
 
-      // Left
-      if (current.data > toFind) {
-        // The node has no children
-        // So it doesn't exist
-        if (!current.left) {
-          return null;
-        }
+      if (this.left) {
+        return this.left.contains(toFind);
+      }
+    }
 
-        if (current.left) {
-          current = current.left;
-          return search(toFind, current);
-        }
+    // Right
+    if (this.data < toFind) {
+      // The node has no children
+      // So it doesn't exist
+      if (!this.right) {
+        return null;
       }
 
-      // Right
-      if (current.data < toFind) {
-        // The node has no children
-        // So it doesn't exist
-        if (!current.right) {
-          return null;
-        }
-
-        if (current.right) {
-          current = current.right;
-          return search(toFind, current);
-        }
+      if (this.right) {
+        return this.right.contains(toFind);
       }
     }
 
