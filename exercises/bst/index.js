@@ -19,35 +19,32 @@ class Node {
   }
 
   insert(data) {
-    function insert(data, current) {
-      // Less than (left)
-      if (current.data > data) {
-        if (!current.left) {
-          current.left = new Node(data);
-          return;
-        }
-
-        if (current.left) {
-          current = current.left;
-          insert(data, current);
-        }
+    // Less than (left)
+    if (this.data > data) {
+      // Has no children
+      if (!this.left) {
+        this.left = new Node(data);
+        return;
       }
 
-      // Greater than (right)
-      if (current.data < data) {
-        if (!current.right) {
-          current.right = new Node(data);
-          return;
-        }
-
-        if (current.right) {
-          current = current.right;
-          insert(data, current);
-        }
+      // Has children
+      if (this.left) {
+        this.left.insert(data);
       }
     }
 
-    insert(data, this);
+    // Greater than (right)
+    if (this.data < data) {
+      // Has no children
+      if (!this.right) {
+        this.right = new Node(data);
+        return;
+      }
+
+      if (this.right) {
+        this.right.insert(data);
+      }
+    }
   }
 
   contains(toFind) {
